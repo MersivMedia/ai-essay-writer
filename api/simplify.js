@@ -29,20 +29,20 @@ export default async function handler(req, res) {
     if (!openaiApiKey) {
       // Demo mode - return sample response
       const demoResponse = {
-        simplified: `This document is a legal agreement where you (the first party) agree to protect and defend another person or company (the second party) from any legal problems, claims, or costs that might come up.\n\nIn simple terms:\n• If someone sues the second party for something related to this agreement, you will handle the legal costs\n• You will pay for any damages or settlements that result from these legal issues\n• You take responsibility for defending them in court if needed\n\nThis is called an "indemnification clause" and it's commonly found in service contracts, rental agreements, and business partnerships. It's designed to shift legal risk from one party to another.\n\nNote: This is a demo response. Add your OpenAI API key to environment variables to get real AI-powered analysis.`,
+        simplified: `Your essay demonstrates strong structural foundation with clear argumentative development. The introduction effectively establishes the thesis while body paragraphs provide supporting evidence and analysis.\n\nKey Analysis:\n• Strong thesis statement that guides the entire essay\n• Well-developed body paragraphs with topic sentences\n• Good use of evidence and examples to support claims\n• Clear transitions that connect ideas logically\n\nThis essay follows the classic five-paragraph structure commonly used in academic writing. It demonstrates solid understanding of persuasive writing techniques and evidence-based argumentation.\n\nNote: This is a demo response. Add your OpenAI API key to environment variables to get real AI-powered essay analysis.`,
         keyPoints: [
-          "You agree to protect the other party from legal claims",
-          "You will pay for legal costs and damages on their behalf", 
-          "This applies to issues related to this specific agreement",
-          "You become responsible for their legal defense in related matters",
-          "This is a standard risk-shifting clause in contracts"
+          "Clear thesis statement that drives the argument",
+          "Strong topic sentences guide each body paragraph", 
+          "Good use of evidence and supporting examples",
+          "Logical flow and transitions between ideas",
+          "Proper conclusion that reinforces main argument"
         ],
         risks: [
-          "Unlimited financial liability - costs could be very high",
-          "You could pay for problems you didn't directly cause",
-          "Legal costs can accumulate quickly even for frivolous claims",
-          "You may have little control over how the other party handles situations", 
-          "This clause typically favors the other party heavily"
+          "Consider adding counterarguments to strengthen analysis",
+          "Some transitions between paragraphs could be smoother",
+          "Conclusion could better synthesize key insights",
+          "Additional evidence or examples might support weaker points", 
+          "Check for any unclear or overly complex sentences"
         ]
       };
       
@@ -97,20 +97,20 @@ Do not provide legal advice. Focus on education and understanding.`
     
     // Fallback to demo response on error
     const demoResponse = {
-      simplified: `This document is a legal agreement where you (the first party) agree to protect and defend another person or company (the second party) from any legal problems, claims, or costs that might come up.\n\nIn simple terms:\n• If someone sues the second party for something related to this agreement, you will handle the legal costs\n• You will pay for any damages or settlements that result from these legal issues\n• You take responsibility for defending them in court if needed\n\nThis is called an "indemnification clause" and it's commonly found in service contracts, rental agreements, and business partnerships. It's designed to shift legal risk from one party to another.\n\nNote: This is a demo response due to an API error. The service owner should check the OpenAI configuration.`,
+      simplified: `Your essay demonstrates strong structural foundation with clear argumentative development. The introduction effectively establishes the thesis while body paragraphs provide supporting evidence and analysis.\n\nKey Analysis:\n• Strong thesis statement that guides the entire essay\n• Well-developed body paragraphs with topic sentences\n• Good use of evidence and examples to support claims\n• Clear transitions that connect ideas logically\n\nThis essay follows the classic five-paragraph structure commonly used in academic writing. It demonstrates solid understanding of persuasive writing techniques and evidence-based argumentation.\n\nNote: This is a demo response due to an API error. The service owner should check the OpenAI configuration.`,
       keyPoints: [
-        "You agree to protect the other party from legal claims",
-        "You will pay for legal costs and damages on their behalf", 
-        "This applies to issues related to this specific agreement",
-        "You become responsible for their legal defense in related matters",
-        "This is a standard risk-shifting clause in contracts"
+        "Clear thesis statement that drives the argument",
+        "Strong topic sentences guide each body paragraph", 
+        "Good use of evidence and supporting examples",
+        "Logical flow and transitions between ideas",
+        "Proper conclusion that reinforces main argument"
       ],
       risks: [
-        "Unlimited financial liability - costs could be very high",
-        "You could pay for problems you didn't directly cause",
-        "Legal costs can accumulate quickly even for frivolous claims",
-        "You may have little control over how the other party handles situations", 
-        "This clause typically favors the other party heavily"
+        "Consider adding counterarguments to strengthen analysis",
+        "Some transitions between paragraphs could be smoother",
+        "Conclusion could better synthesize key insights",
+        "Additional evidence or examples might support weaker points", 
+        "Check for any unclear or overly complex sentences"
       ]
     };
     
