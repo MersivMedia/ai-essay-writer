@@ -729,16 +729,16 @@
                         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="5555555555" data-ad-format="rectangle"></ins>
                     </div>
 
-                    <!-- Simplified Explanation -->
+                    <!-- Generated Essay -->
                     <div class="result-section">
-                        <h3>✅ Essay Analysis</h3>
-                        <div class="result-content" id="simplifiedText"></div>
+                        <h3>📝 Your Generated Essay</h3>
+                        <div class="result-content" id="essayContent"></div>
                     </div>
 
-                    <!-- Key Points -->
+                    <!-- Essay Stats -->
                     <div class="result-section">
-                        <h3>💪 Strengths</h3>
-                        <ul class="key-points" id="keyPoints"></ul>
+                        <h3>📊 Essay Statistics</h3>
+                        <div class="essay-stats" id="essayStats"></div>
                     </div>
 
                     <!-- Mid-Results Large Rectangle (moved here for better UX) -->
@@ -753,10 +753,10 @@
                         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXX" data-ad-slot="7777777777" data-ad-format="leaderboard"></ins>
                     </div>
 
-                    <!-- Risks -->
+                    <!-- Essay Structure -->
                     <div class="result-section">
-                        <h3>📈 Suggestions for Improvement</h3>
-                        <ul class="risks" id="riskPoints"></ul>
+                        <h3>🏗️ Essay Structure</h3>
+                        <ul class="essay-structure" id="essayStructure"></ul>
                     </div>
 
                     <!-- Post-Analysis Large Ad -->
@@ -965,7 +965,7 @@
                 }
 
                 const data = await response.json();
-                displayResults(data);
+                displayEssayResults(data);
                 
                 // Show reset button
                 resetBtn.style.display = 'block';
@@ -975,24 +975,18 @@
                 
                 // Show demo results as fallback
                 const demoData = {
-                    simplified: `Your essay demonstrates strong structural foundation with clear argumentative development. The introduction effectively establishes the thesis while body paragraphs provide supporting evidence and analysis.\n\nKey Analysis:\n• Strong thesis statement that guides the entire essay\n• Well-developed body paragraphs with topic sentences\n• Good use of evidence and examples to support claims\n• Clear transitions that connect ideas logically\n\nThis essay follows the classic five-paragraph structure commonly used in academic writing. It demonstrates solid understanding of persuasive writing techniques and evidence-based argumentation.\n\nNote: This is a demo response. For real AI analysis, the site owner needs to add an OpenAI API key.`,
-                    keyPoints: [
-                        "Clear thesis statement that drives the argument",
-                        "Strong topic sentences guide each body paragraph",
-                        "Good use of evidence and supporting examples",
-                        "Logical flow and transitions between ideas",
-                        "Proper conclusion that reinforces main argument"
-                    ],
-                    risks: [
-                        "Consider adding counterarguments to strengthen analysis",
-                        "Some transitions between paragraphs could be smoother",
-                        "Conclusion could better synthesize key insights",
-                        "Additional evidence or examples might support weaker points",
-                        "Check for any unclear or overly complex sentences"
+                    essay: "# The Power of Renewable Energy: A Sustainable Future\n\nIn an era of climate change and environmental consciousness, renewable energy has emerged as a critical solution for our planet's future. This essay explores the compelling benefits of renewable energy, focusing on environmental impact, economic advantages, and long-term sustainability.\n\n## Environmental Benefits\n\nRenewable energy sources like solar, wind, and hydroelectric power produce virtually no greenhouse gas emissions during operation. Unlike fossil fuels, which release harmful pollutants and carbon dioxide, renewable sources help reduce our carbon footprint and combat global warming. Studies show that widespread adoption of renewable energy could reduce global CO2 emissions by up to 70% by 2050.\n\n## Economic Advantages\n\nContrary to popular belief, renewable energy has become increasingly cost-effective. Solar panel costs have dropped by over 80% in the past decade, making it cheaper than coal in many regions. The renewable energy sector also creates jobs at a faster rate than traditional energy industries, with over 13 million people employed in renewable energy worldwide.\n\n## Future Sustainability\n\nUnlike finite fossil fuel reserves, renewable energy sources are inexhaustible. The sun will shine, the wind will blow, and rivers will flow for billions of years. Investing in renewable infrastructure today ensures energy security for future generations while reducing dependence on volatile fossil fuel markets.\n\n## Conclusion\n\nRenewable energy represents more than just an alternative to fossil fuels—it's a pathway to a sustainable, economically viable, and environmentally responsible future. As college students who will inherit this planet, supporting renewable energy initiatives is both a practical and moral imperative for creating lasting positive change.",
+                    wordCount: 287,
+                    readingTime: "2-3 minutes",
+                    structure: [
+                        "Clear thesis statement",
+                        "Three main supporting arguments", 
+                        "Evidence-based reasoning",
+                        "Strong conclusion with call to action"
                     ]
                 };
                 
-                displayResults(demoData);
+                displayEssayResults(demoData);
                 resetBtn.style.display = 'block';
             } finally {
                 simplifyBtn.disabled = false;
@@ -1000,29 +994,41 @@
             }
         }
 
-        function displayResults(data) {
-            const simplifiedDiv = document.getElementById('simplifiedText');
-            const keyPointsList = document.getElementById('keyPoints');
-            const risksList = document.getElementById('riskPoints');
+        function displayEssayResults(data) {
+            const essayContentDiv = document.getElementById('essayContent');
+            const essayStatsDiv = document.getElementById('essayStats');
+            const essayStructureList = document.getElementById('essayStructure');
             const resultsDiv = document.getElementById('resultsSection');
 
-            // Display simplified text
-            simplifiedDiv.innerHTML = data.simplified.replace(/\n/g, '<br>');
+            // Display essay content (convert markdown to HTML for basic formatting)
+            let essayHtml = data.essay
+                .replace(/^# (.*$)/gm, '<h2>$1</h2>')
+                .replace(/^## (.*$)/gm, '<h3>$1</h3>')
+                .replace(/^### (.*$)/gm, '<h4>$1</h4>')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^\*\* (.*$)/gm, '<strong>$1</strong>');
+            essayContentDiv.innerHTML = '<p>' + essayHtml + '</p>';
 
-            // Display key points
-            keyPointsList.innerHTML = '';
-            data.keyPoints.forEach(point => {
-                const li = document.createElement('li');
-                li.textContent = point;
-                keyPointsList.appendChild(li);
-            });
+            // Display essay statistics
+            essayStatsDiv.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">${data.wordCount}</div>
+                        <div style="font-size: 0.9rem; color: #666;">Words</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #059669;">${data.readingTime}</div>
+                        <div style="font-size: 0.9rem; color: #666;">Reading Time</div>
+                    </div>
+                </div>
+            `;
 
-            // Display risks
-            risksList.innerHTML = '';
-            data.risks.forEach(risk => {
+            // Display essay structure
+            essayStructureList.innerHTML = '';
+            data.structure.forEach(item => {
                 const li = document.createElement('li');
-                li.textContent = risk;
-                risksList.appendChild(li);
+                li.textContent = item;
+                essayStructureList.appendChild(li);
             });
 
             // Show results
