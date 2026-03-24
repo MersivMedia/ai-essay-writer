@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     }
 
     // Real OpenAI processing
-    const { OpenAI } = require('openai');
+    const OpenAI = require('openai');
     
     const openai = new OpenAI({
       apiKey: openaiApiKey,
