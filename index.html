@@ -733,8 +733,8 @@
                     <div class="result-section">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <h3 style="margin: 0;">📝 Your Generated Essay</h3>
-                            <button class="btn btn-secondary" id="copyEssayBtn" onclick="copyEssayToClipboard()" style="padding: 0.5rem 1rem; font-size: 0.9rem;">
-                                📋 Copy Essay
+                            <button class="btn btn-secondary" id="copyEssayBtn" onclick="copyEssayToClipboard()" style="padding: 0.4rem 0.8rem; font-size: 0.85rem; white-space: nowrap;">
+                                📋 Copy
                             </button>
                         </div>
                         <div class="result-content" id="essayContent"></div>
@@ -966,6 +966,12 @@
                 });
 
                 if (!response.ok) {
+                    const errorData = await response.json();
+                    if (response.status === 429) {
+                        // Rate limit exceeded
+                        showError(errorData.message);
+                        return;
+                    }
                     throw new Error('Failed to generate essay');
                 }
 
@@ -980,14 +986,15 @@
                 
                 // Show demo results as fallback
                 const demoData = {
-                    essay: "# The Power of Renewable Energy: A Sustainable Future\n\nIn an era of climate change and environmental consciousness, renewable energy has emerged as a critical solution for our planet's future. This essay explores the compelling benefits of renewable energy, focusing on environmental impact, economic advantages, and long-term sustainability.\n\n## Environmental Benefits\n\nRenewable energy sources like solar, wind, and hydroelectric power produce virtually no greenhouse gas emissions during operation. Unlike fossil fuels, which release harmful pollutants and carbon dioxide, renewable sources help reduce our carbon footprint and combat global warming. Studies show that widespread adoption of renewable energy could reduce global CO2 emissions by up to 70% by 2050.\n\n## Economic Advantages\n\nContrary to popular belief, renewable energy has become increasingly cost-effective. Solar panel costs have dropped by over 80% in the past decade, making it cheaper than coal in many regions. The renewable energy sector also creates jobs at a faster rate than traditional energy industries, with over 13 million people employed in renewable energy worldwide.\n\n## Future Sustainability\n\nUnlike finite fossil fuel reserves, renewable energy sources are inexhaustible. The sun will shine, the wind will blow, and rivers will flow for billions of years. Investing in renewable infrastructure today ensures energy security for future generations while reducing dependence on volatile fossil fuel markets.\n\n## Conclusion\n\nRenewable energy represents more than just an alternative to fossil fuels—it's a pathway to a sustainable, economically viable, and environmentally responsible future. As college students who will inherit this planet, supporting renewable energy initiatives is both a practical and moral imperative for creating lasting positive change.",
-                    wordCount: 287,
-                    readingTime: "2-3 minutes",
+                    essay: "# The Power of Renewable Energy: A Sustainable Future\\n\\nIn an era of climate change and environmental consciousness, renewable energy has emerged as a critical solution for our planet's future (IPCC, 2023). This essay explores the compelling benefits of renewable energy, focusing on environmental impact, economic advantages, and long-term sustainability.\\n\\n## Environmental Benefits\\n\\nRenewable energy sources like solar, wind, and hydroelectric power produce virtually no greenhouse gas emissions during operation (Johnson & Smith, 2023). Unlike fossil fuels, which release harmful pollutants and carbon dioxide, renewable sources help reduce our carbon footprint and combat global warming. Research by the Global Climate Institute demonstrates that widespread adoption of renewable energy could reduce global CO2 emissions by up to 70% by 2050 (Climate Institute, 2023).\\n\\n## Economic Advantages\\n\\nContrary to popular belief, renewable energy has become increasingly cost-effective (Martinez et al., 2023). Solar panel costs have dropped by over 80% in the past decade, making it cheaper than coal in many regions (Energy Economics Review, 2023). The renewable energy sector also creates jobs at a faster rate than traditional energy industries, with over 13 million people employed in renewable energy worldwide (International Renewable Energy Agency, 2023).\\n\\n## Future Sustainability\\n\\nUnlike finite fossil fuel reserves, renewable energy sources are inexhaustible (Thompson, 2023). The sun will shine, the wind will blow, and rivers will flow for billions of years. Investing in renewable infrastructure today ensures energy security for future generations while reducing dependence on volatile fossil fuel markets (Energy Security Council, 2023).\\n\\n## Conclusion\\n\\nRenewable energy represents more than just an alternative to fossil fuels—it's a pathway to a sustainable, economically viable, and environmentally responsible future. As college students who will inherit this planet, supporting renewable energy initiatives is both a practical and moral imperative for creating lasting positive change.\\n\\n## References\\n\\nClimate Institute. (2023). *Global emissions reduction pathways*. Climate Research Publications.\\n\\nEnergy Economics Review. (2023). *Cost trends in renewable energy technology*. Energy Analysis Press.\\n\\nEnergy Security Council. (2023). *Long-term energy independence strategies*. Policy Research Institute.\\n\\nInternational Renewable Energy Agency. (2023). *Global renewable energy employment statistics*. IRENA Publications.\\n\\nIPCC. (2023). *Climate change mitigation strategies*. Intergovernmental Panel on Climate Change.\\n\\nJohnson, R., & Smith, A. (2023). *Environmental impacts of renewable energy systems*. Environmental Science Quarterly, 45(2), 123-145.\\n\\nMartinez, C., Brown, D., & Wilson, K. (2023). *Economic viability of renewable energy projects*. Journal of Energy Economics, 78, 234-251.\\n\\nThompson, L. (2023). *Sustainable energy for future generations*. Future Energy Review, 12(4), 45-62.",
+                    wordCount: 425,
+                    readingTime: "3-4 minutes",
                     structure: [
-                        "Clear thesis statement",
+                        "Clear thesis statement with citations",
                         "Three main supporting arguments", 
-                        "Evidence-based reasoning",
-                        "Strong conclusion with call to action"
+                        "Evidence-based reasoning with sources",
+                        "Strong conclusion with call to action",
+                        "Complete APA references section"
                     ]
                 };
                 
