@@ -633,15 +633,39 @@
         }
     </style>
     
-    <!-- Google AdSense -->
+    <!-- Google Consent Management Platform (CMP) -->
+    <script>
+      window.gtag = window.gtag || function () { (gtag.q = gtag.q || []).push(arguments) };
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+      });
+    </script>
+    
+    <!-- Google AdSense with CMP Support -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5838020439812802" crossorigin="anonymous"></script>
     
-    <!-- AdSense Auto Ads -->
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-5838020439812802",
-            enable_page_level_ads: true
-        });
+    <!-- Google Funding Choices (CMP) -->
+    <script async src="https://fundingchoicesmessages.google.com/i/pub-5838020439812802?ers=1" nonce=""></script>
+    <script nonce="">
+      (function() {
+        function signalGooglefcPresent() {
+          if (!window.frames['googlefcPresent']) {
+            if (document.body) {
+              const iframe = document.createElement('iframe');
+              iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+              iframe.style.display = 'none';
+              iframe.name = 'googlefcPresent';
+              document.body.appendChild(iframe);
+            } else {
+              setTimeout(signalGooglefcPresent, 0);
+            }
+          }
+        }
+        signalGooglefcPresent();
+      })();
     </script>
     
 </head>
@@ -656,6 +680,7 @@
                 <a href="#features">Features</a>
                 <a href="#how-it-works">How it Works</a>
                 <a href="#faq">FAQ</a>
+                <a href="#privacy">Privacy & Cookies</a>
             </nav>
         </div>
     </header>
@@ -961,6 +986,41 @@
                         </div>
                     </div>
                 </section>
+
+                <!-- Privacy & Cookies Section -->
+                <section id="privacy" class="content-section">
+                    <div class="container">
+                        <h2>🔒 Privacy & Cookies</h2>
+                        
+                        <div class="privacy-content">
+                            <h3>Cookie Consent</h3>
+                            <p>We use cookies and similar technologies to improve your experience, serve personalized ads, and analyze our traffic. By continuing to use our site, you consent to our use of cookies.</p>
+                            
+                            <div class="consent-controls" style="margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 8px;">
+                                <p><strong>Manage Your Consent:</strong></p>
+                                <button onclick="updateConsent('granted')" style="background: #10b981; color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 6px; cursor: pointer;">Accept All Cookies</button>
+                                <button onclick="updateConsent('denied')" style="background: #ef4444; color: white; border: none; padding: 10px 20px; margin: 5px; border-radius: 6px; cursor: pointer;">Reject All Cookies</button>
+                            </div>
+                            
+                            <h3>How We Use Cookies</h3>
+                            <ul>
+                                <li><strong>Essential Cookies:</strong> Required for basic site functionality</li>
+                                <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site</li>
+                                <li><strong>Advertising Cookies:</strong> Used to serve relevant ads via Google AdSense</li>
+                                <li><strong>Personalization:</strong> Remember your preferences and settings</li>
+                            </ul>
+                            
+                            <h3>Data Processing</h3>
+                            <p>Your essay inputs are processed temporarily to generate AI responses and are not stored permanently. We comply with GDPR, CCPA, and other privacy regulations.</p>
+                            
+                            <h3>Third-Party Services</h3>
+                            <p>We use Google AdSense for advertisements. Google may collect data for ad personalization. You can learn more about Google's privacy practices in their <a href="https://policies.google.com/privacy" target="_blank" style="color: #3b82f6;">Privacy Policy</a>.</p>
+                            
+                            <h3>Contact</h3>
+                            <p>For privacy-related questions, please contact us through our support channels.</p>
+                        </div>
+                    </div>
+                </section>
             </div>
         </main>
 
@@ -971,6 +1031,23 @@
                 <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5838020439812802" data-ad-slot="1010101010" data-ad-format="auto" data-full-width-responsive="true"></ins>
             </div>
         </aside>
+    </div>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 15px; z-index: 10000; border-top: 3px solid #3b82f6;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+            <div style="flex: 1; min-width: 300px;">
+                <p style="margin: 0; font-size: 14px;">
+                    🍪 We use cookies to enhance your experience and serve personalized ads. 
+                    <a href="#privacy" style="color: #93c5fd; text-decoration: underline;">Learn more about our privacy practices</a>
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button onclick="acceptCookies()" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">Accept All</button>
+                <button onclick="rejectCookies()" style="background: transparent; color: white; border: 1px solid #6b7280; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">Reject All</button>
+                <button onclick="hideCookieBanner()" style="background: transparent; color: #9ca3af; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">✕</button>
+            </div>
+        </div>
     </div>
 
     <!-- Sticky Bottom Ad -->
@@ -1187,11 +1264,85 @@
         // AdSense initialization moved to bottom of page
     </script>
     
-    <!-- AdSense Global Initialization -->
+    <!-- AdSense Global Initialization with CMP Support -->
     <script>
-        // Global AdSense initialization - ads are now individually initialized
+        // Global AdSense initialization with consent management
         window.addEventListener('load', function() {
-            console.log('AdSense ready - individual ads will load when visible');
+            console.log('AdSense ready with CMP - individual ads will load when visible');
+            
+            // Check for existing consent and update if needed
+            if (localStorage.getItem('consent_granted') === 'true') {
+                updateConsent('granted');
+            }
+        });
+        
+        // Function to update consent when user accepts
+        function updateConsent(consentStatus) {
+            gtag('consent', 'update', {
+                'ad_storage': consentStatus,
+                'ad_user_data': consentStatus, 
+                'ad_personalization': consentStatus,
+                'analytics_storage': consentStatus
+            });
+            
+            // Store consent choice
+            localStorage.setItem('consent_granted', consentStatus === 'granted' ? 'true' : 'false');
+            
+            // Reload ads if consent was granted
+            if (consentStatus === 'granted') {
+                setTimeout(function() {
+                    // Refresh AdSense ads
+                    if (window.adsbygoogle && window.adsbygoogle.loaded) {
+                        window.adsbygoogle.push({});
+                    }
+                }, 100);
+            }
+        }
+        
+        // Listen for consent events from Google CMP
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'consent-response') {
+                const consentData = event.data;
+                if (consentData.consentString) {
+                    updateConsent('granted');
+                }
+            }
+        });
+        
+        // Cookie banner functions
+        function showCookieBanner() {
+            const banner = document.getElementById('cookieConsent');
+            if (banner && !localStorage.getItem('cookie_choice_made')) {
+                banner.style.display = 'block';
+            }
+        }
+        
+        function hideCookieBanner() {
+            const banner = document.getElementById('cookieConsent');
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+        
+        function acceptCookies() {
+            updateConsent('granted');
+            localStorage.setItem('cookie_choice_made', 'true');
+            hideCookieBanner();
+        }
+        
+        function rejectCookies() {
+            updateConsent('denied');
+            localStorage.setItem('cookie_choice_made', 'true');
+            hideCookieBanner();
+        }
+        
+        // Show cookie banner on page load if no choice has been made
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (!localStorage.getItem('cookie_choice_made')) {
+                    showCookieBanner();
+                }
+            }, 2000); // Show after 2 seconds
         });
     </script>
     
