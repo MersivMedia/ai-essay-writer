@@ -1229,6 +1229,23 @@
 
         // AdSense initialization moved to bottom of page
     </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieConsent" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2d3748; color: white; padding: 15px; z-index: 10000; border-top: 3px solid #3b82f6;">
+        <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+            <div style="flex: 1; min-width: 300px;">
+                <p style="margin: 0; font-size: 14px;">
+                    🍪 We use cookies to enhance your experience and serve personalized ads. 
+                    <a href="privacy-policy.html" style="color: #93c5fd; text-decoration: underline;">Learn more about our privacy practices</a>
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <button onclick="acceptCookies()" style="background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">Accept All</button>
+                <button onclick="rejectCookies()" style="background: transparent; color: white; border: 1px solid #6b7280; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">Reject All</button>
+                <button onclick="hideCookieBanner()" style="background: transparent; color: #9ca3af; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 14px;">✕</button>
+            </div>
+        </div>
+    </div>
     
     <!-- AdSense Global Initialization with CMP Support -->
     <script>
